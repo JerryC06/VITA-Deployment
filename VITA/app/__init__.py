@@ -1,0 +1,1 @@
+"""VITA demo application package."""

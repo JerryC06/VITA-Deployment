@@ -1,0 +1,103 @@
+{
+  "generatedBy": "scripts/build_examples.py",
+  "specVersion": "1.1.0",
+  "referenceDate": "2024-01-01T09:00:00Z",
+  "records": [
+    {
+      "patientId": "VITA-0001",
+      "bundleFile": "Bundle-vita-0001.json",
+      "sourceRow": {
+        "Age": "54",
+        "Sex": "M",
+        "ChestPainType": "TA",
+        "RestingBP": "140",
+        "Cholesterol": "260",
+        "FastingBS": "1",
+        "RestingECG": "ST",
+        "MaxHR": "150",
+        "ExerciseAngina": "Y",
+        "Oldpeak": "2.3",
+        "ST_Slope": "Flat",
+        "HeartDisease": "1"
+      },
+      "expectedFeatures": {
+        "Age": 54,
+        "Sex": "M",
+        "ChestPainType": "TA",
+        "RestingBP": 140,
+        "Cholesterol": 260,
+        "FastingBS": 1,
+        "RestingECG": "ST",
+        "MaxHR": 150,
+        "ExerciseAngina": "Y",
+        "Oldpeak": 2.3,
+        "ST_Slope": "Flat"
+      },
+      "label": 1
+    },
+    {
+      "patientId": "VITA-0002",
+      "bundleFile": "Bundle-vita-0002.json",
+      "sourceRow": {
+        "Age": "41",
+        "Sex": "F",
+        "ChestPainType": "ASY",
+        "RestingBP": "0",
+        "Cholesterol": "0",
+        "FastingBS": "0",
+        "RestingECG": "Normal",
+        "MaxHR": "172",
+        "ExerciseAngina": "N",
+        "Oldpeak": "-1.0",
+        "ST_Slope": "Up",
+        "HeartDisease": "0"
+      },
+      "expectedFeatures": {
+        "Age": 41,
+        "Sex": "F",
+        "ChestPainType": "ASY",
+        "RestingBP": null,
+        "Cholesterol": null,
+        "FastingBS": 0,
+        "RestingECG": "Normal",
+        "MaxHR": 172,
+        "ExerciseAngina": "N",
+        "Oldpeak": -1,
+        "ST_Slope": "Up"
+      },
+      "label": 0
+    },
+    {
+      "patientId": "VITA-0003",
+      "bundleFile": "Bundle-vita-0003.json",
+      "sourceRow": {
+        "Age": "68",
+        "Sex": "1",
+        "ChestPainType": "NAP",
+        "RestingBP": "160",
+        "Cholesterol": "0",
+        "FastingBS": "1",
+        "RestingECG": "LVH",
+        "MaxHR": "95",
+        "ExerciseAngina": "Y",
+        "Oldpeak": "1.4",
+        "ST_Slope": "Down",
+        "HeartDisease": "1"
+      },
+      "expectedFeatures": {
+        "Age": 68,
+        "Sex": "M",
+        "ChestPainType": "NAP",
+        "RestingBP": 160,
+        "Cholesterol": null,
+        "FastingBS": 1,
+        "RestingECG": "LVH",
+        "MaxHR": 95,
+        "ExerciseAngina": "Y",
+        "Oldpeak": 1.4,
+        "ST_Slope": "Down"
+      },
+      "label": 1
+    }
+  ]
+}

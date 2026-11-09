@@ -1,0 +1,34 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "vita-observation-codes",
+  "url": "https://vita.example.org/fhir/CodeSystem/vita-observation-codes",
+  "version": "1.0.0",
+  "name": "VitaObservationCodes",
+  "title": "VITA Observation Codes (local)",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-27",
+  "publisher": "VITA Project Team, CS6440 (Georgia Tech OMS)",
+  "description": "Local observation codes for measurements taken from the Kaggle Heart Failure Prediction Dataset that have no suitable LOINC or SNOMED CT concept. Intended for the educational VITA prototype only.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US",
+          "display": "United States of America"
+        }
+      ]
+    }
+  ],
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 1,
+  "concept": [
+    {
+      "code": "st-slope-peak",
+      "display": "ST segment slope at peak exercise",
+      "definition": "The direction of the ST segment at peak exercise, recorded as upsloping, flat, or downsloping. Used because LOINC only models per-lead quantitative ST slope and SNOMED CT has no concept for the categorical direction at peak exercise."
+    }
+  ]
+}

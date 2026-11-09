@@ -1,0 +1,592 @@
+{
+  "name": "VITA Heart Disease Clinical Feature Mapping",
+  "version": "1.1.0",
+  "status": "draft",
+  "date": "2026-10-27",
+  "fhirVersion": "4.0.1",
+  "canonicalBase": "https://vita.example.org/fhir",
+  "owner": "Yidan Sun (FHIR data conversion, parsing and validation)",
+  "dataset": {
+    "name": "Heart Failure Prediction Dataset",
+    "publisher": "fedesoriano (Kaggle)",
+    "url": "https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction",
+    "rows": 918,
+    "featureColumns": 11,
+    "labelColumn": "HeartDisease"
+  },
+  "bundleConventions": {
+    "type": "collection",
+    "fullUrlTemplate": "https://vita.example.org/fhir/{resourceType}/{id}",
+    "patientIdPrefix": "VITA-",
+    "patientIdPattern": "VITA-[0-9]{4}",
+    "identifierSystem": "https://vita.example.org/fhir/sid/patient",
+    "observationStatus": "final",
+    "effectiveDateTime": "2024-01-01T09:00:00Z",
+    "subjectReferenceTemplate": "https://vita.example.org/fhir/Patient/{patientId}",
+    "referenceDate": "2024-01-01T09:00:00Z",
+    "referenceYear": 2024,
+    "syntheticDataOnly": true
+  },
+  "features": [
+    {
+      "id": "age",
+      "column": "Age",
+      "order": 1,
+      "required": true,
+      "fhir": {
+        "resource": "Patient",
+        "element": "Patient.birthDate",
+        "valueType": "date",
+        "code": null,
+        "unit": null
+      },
+      "toFhir": {
+        "type": "birthYearFromAge",
+        "referenceYear": 2024,
+        "precision": "year"
+      },
+      "fromFhir": {
+        "type": "ageFromBirthDate",
+        "referenceDate": "2024-01-01T09:00:00Z"
+      },
+      "validation": {
+        "min": 18,
+        "max": 120,
+        "unit": "years"
+      },
+      "notes": [
+        "The dataset stores age in whole years, not a birth date. Patient.birthDate is therefore derived as an approximate year-precision value: referenceYear minus age (e.g. age 54 becomes '1970').",
+        "Year precision (YYYY) is used deliberately: it is honest about the available precision and round-trips to the original age exactly when age is recomputed at the reference date.",
+        "If a real record had no usable birth date, the fallback is Observation code LOINC 30525-0 'Age' with valueQuantity in years."
+      ]
+    },
+    {
+      "id": "sex",
+      "column": "Sex",
+      "order": 2,
+      "required": true,
+      "fhir": {
+        "resource": "Patient",
+        "element": "Patient.gender",
+        "valueType": "code",
+        "code": null,
+        "unit": null
+      },
+      "toFhir": {
+        "type": "patientGender",
+        "map": {
+          "M": "male",
+          "F": "female",
+          "1": "male",
+          "0": "female"
+        },
+        "canonicalValue": {
+          "M": "M",
+          "F": "F",
+          "1": "M",
+          "0": "F"
+        }
+      },
+      "fromFhir": {
+        "type": "patientGenderReverse",
+        "map": {
+          "male": "M",
+          "female": "F"
+        }
+      },
+      "validation": {
+        "allowed": [
+          "M",
+          "F",
+          "1",
+          "0"
+        ]
+      },
+      "notes": [
+        "The dataset records a binary sex value. The Kaggle edition uses M/F; the original UCI encoding uses 1/0 (1 = male, 0 = female). Both are accepted and normalized to FHIR AdministrativeGender (male/female).",
+        "Team decision (2026-10-27): no birthsex extension. The source has only two values and no gender-identity field, so Patient.gender is sufficient for this prototype.",
+        "The extracted feature token is always M or F (canonical), regardless of the source encoding, so the model sees one consistent vocabulary."
+      ]
+    },
+    {
+      "id": "chestPainType",
+      "column": "ChestPainType",
+      "order": 3,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "chest-pain",
+        "element": "Observation.valueCodeableConcept",
+        "valueType": "CodeableConcept",
+        "category": "survey",
+        "code": {
+          "system": "http://snomed.info/sct",
+          "code": "29857009",
+          "display": "Chest pain"
+        },
+        "codeText": "Chest pain type (history)",
+        "unit": null
+      },
+      "toFhir": {
+        "type": "codeMap",
+        "map": {
+          "TA": {
+            "system": "http://snomed.info/sct",
+            "code": "429559004",
+            "display": "Typical angina",
+            "text": "Typical angina"
+          },
+          "ATA": {
+            "system": "http://snomed.info/sct",
+            "code": "371807002",
+            "display": "Atypical angina",
+            "text": "Atypical angina"
+          },
+          "NAP": {
+            "system": "http://snomed.info/sct",
+            "code": "274668005",
+            "display": "Non-cardiac chest pain",
+            "text": "Non-anginal chest pain"
+          },
+          "ASY": {
+            "system": "http://snomed.info/sct",
+            "code": "84387000",
+            "display": "Asymptomatic",
+            "text": "Asymptomatic"
+          }
+        }
+      },
+      "fromFhir": {
+        "type": "codeMapReverse"
+      },
+      "validation": {
+        "allowed": [
+          "TA",
+          "ATA",
+          "NAP",
+          "ASY"
+        ]
+      },
+      "notes": [
+        "All four dataset categories have a SNOMED CT concept, so no local code system is required.",
+        "NAP ('non-anginal pain') is mapped to SNOMED 274668005 'Non-cardiac chest pain'. This is the closest standard concept; the limitation is recorded in the terminology gap table.",
+        "ASY is stored explicitly as 'Asymptomatic' rather than by omitting the Observation, because the dataset distinguishes 'asymptomatic' from 'not recorded'."
+      ]
+    },
+    {
+      "id": "restingBp",
+      "column": "RestingBP",
+      "order": 4,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "bp",
+        "element": "Observation.valueQuantity",
+        "valueType": "Quantity",
+        "category": "vital-signs",
+        "code": {
+          "system": "http://loinc.org",
+          "code": "8480-6",
+          "display": "Systolic blood pressure"
+        },
+        "codeText": "Resting systolic blood pressure",
+        "unit": {
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]",
+          "display": "mmHg"
+        }
+      },
+      "toFhir": {
+        "type": "quantity",
+        "sentinel": {
+          "value": 0,
+          "treatAsMissing": true
+        }
+      },
+      "fromFhir": {
+        "type": "quantityValue"
+      },
+      "validation": {
+        "min": 50,
+        "max": 300,
+        "unit": "mmHg"
+      },
+      "notes": [
+        "The dataset contains a single systolic value only, so LOINC 8480-6 is used directly. If diastolic pressure is added, switch to the standard blood-pressure panel LOINC 85354-9 with components 8480-6 and 8462-4.",
+        "RestingBP = 0 is a missing-value sentinel in the source data (not a physiological measurement); it is encoded with dataAbsentReason instead of a value.",
+        "The resting context is carried by the profile and code text; FHIR has no dedicated 'resting' qualifier for blood pressure."
+      ]
+    },
+    {
+      "id": "cholesterol",
+      "column": "Cholesterol",
+      "order": 5,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "cholesterol",
+        "element": "Observation.valueQuantity",
+        "valueType": "Quantity",
+        "category": "laboratory",
+        "code": {
+          "system": "http://loinc.org",
+          "code": "2093-3",
+          "display": "Cholesterol [Mass/volume] in Serum or Plasma"
+        },
+        "codeText": "Serum total cholesterol",
+        "unit": {
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL",
+          "display": "mg/dL"
+        }
+      },
+      "toFhir": {
+        "type": "quantity",
+        "sentinel": {
+          "value": 0,
+          "treatAsMissing": true
+        }
+      },
+      "fromFhir": {
+        "type": "quantityValue"
+      },
+      "validation": {
+        "min": 50,
+        "max": 600,
+        "unit": "mg/dL"
+      },
+      "notes": [
+        "The Kaggle data dictionary labels the unit 'mm Hg', which is a documentation error: serum cholesterol is reported in mg/dL and the observed value range (0-603) only makes sense in mg/dL. The FHIR mapping uses mg/dL.",
+        "Cholesterol = 0 is a missing-value sentinel in the source data; it is encoded with dataAbsentReason."
+      ]
+    },
+    {
+      "id": "fastingBs",
+      "column": "FastingBS",
+      "order": 6,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "fasting-glucose",
+        "element": "Observation.valueQuantity",
+        "valueType": "Quantity",
+        "category": "laboratory",
+        "code": {
+          "system": "http://loinc.org",
+          "code": "1558-6",
+          "display": "Fasting glucose [Mass/volume] in Serum or Plasma"
+        },
+        "codeText": "Fasting blood glucose (threshold 120 mg/dL)",
+        "unit": {
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL",
+          "display": "mg/dL"
+        }
+      },
+      "toFhir": {
+        "type": "thresholdQuantity",
+        "threshold": 120,
+        "trueComparator": ">",
+        "falseComparator": "<=",
+        "trueInterpretation": "H",
+        "falseInterpretation": "N",
+        "interpretationSystem": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"
+      },
+      "fromFhir": {
+        "type": "comparatorBoolean",
+        "trueComparator": ">"
+      },
+      "validation": {
+        "allowed": [
+          0,
+          1
+        ]
+      },
+      "notes": [
+        "FastingBS is not a measured glucose value; it is the answer to 'is fasting blood sugar > 120 mg/dL?'. FHIR Quantity.comparator captures exactly that: value 120 mg/dL with comparator '>' (true) or '<=' (false).",
+        "The interpretation (H / N) gives human-readable and queryable semantics without inventing a glucose result.",
+        "0 is a real value here, not a missing-value sentinel: both 0 and 1 are meaningful."
+      ]
+    },
+    {
+      "id": "restingEcg",
+      "column": "RestingECG",
+      "order": 7,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "resting-ecg",
+        "element": "Observation.valueCodeableConcept",
+        "valueType": "CodeableConcept",
+        "category": "procedure",
+        "code": {
+          "system": "http://loinc.org",
+          "code": "11524-6",
+          "display": "EKG study"
+        },
+        "codeText": "Resting 12-lead ECG impression",
+        "unit": null
+      },
+      "toFhir": {
+        "type": "codeMap",
+        "map": {
+          "Normal": {
+            "system": "http://snomed.info/sct",
+            "code": "164854000",
+            "display": "ECG normal",
+            "text": "Normal ECG"
+          },
+          "ST": {
+            "system": "http://snomed.info/sct",
+            "code": "164930006",
+            "display": "ECG: ST interval abnormal",
+            "text": "ST-T wave abnormality"
+          },
+          "LVH": {
+            "system": "http://snomed.info/sct",
+            "code": "25488008",
+            "display": "Left ventricular hypertrophy by electrocardiogram",
+            "text": "Left ventricular hypertrophy"
+          }
+        }
+      },
+      "fromFhir": {
+        "type": "codeMapReverse"
+      },
+      "validation": {
+        "allowed": [
+          "Normal",
+          "ST",
+          "LVH"
+        ]
+      },
+      "notes": [
+        "LOINC 11524-6 'EKG study' identifies the study; the coded conclusion is carried in valueCodeableConcept with SNOMED CT. Observation.method.text records that the study was a resting 12-lead ECG.",
+        "Decision (2026-10-27): Observation is used instead of DiagnosticReport so that all nine non-demographic features are read from one resource type with one lookup strategy; the DiagnosticReport form (code 11524-6 + conclusionCode) remains a documented alternative for a future implementation.",
+        "SNOMED 25488008 'Left ventricular hypertrophy by electrocardiogram' is preferred over the generic 55827005 because the finding is ECG-derived."
+      ]
+    },
+    {
+      "id": "maxHr",
+      "column": "MaxHR",
+      "order": 8,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "max-heart-rate",
+        "element": "Observation.valueQuantity",
+        "valueType": "Quantity",
+        "category": "procedure",
+        "code": {
+          "system": "http://snomed.info/sct",
+          "code": "428630002",
+          "display": "Maximum heart rate achieved during course of procedure"
+        },
+        "codeText": "Maximum heart rate achieved during exercise test",
+        "unit": {
+          "system": "http://unitsofmeasure.org",
+          "code": "/min",
+          "display": "beats/min"
+        }
+      },
+      "toFhir": {
+        "type": "quantity"
+      },
+      "fromFhir": {
+        "type": "quantityValue"
+      },
+      "validation": {
+        "min": 30,
+        "max": 250,
+        "unit": "/min"
+      },
+      "notes": [
+        "MaxHR is the peak heart rate reached during the exercise test, not a resting heart rate. SNOMED 428630002 expresses 'maximum ... during course of procedure' precisely.",
+        "LOINC 8867-4 'Heart rate' is the correct code for a non-exercise heart rate and is the fallback for resting measurements."
+      ]
+    },
+    {
+      "id": "exerciseAngina",
+      "column": "ExerciseAngina",
+      "order": 9,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "exercise-angina",
+        "element": "Observation.valueBoolean",
+        "valueType": "boolean",
+        "category": "survey",
+        "code": {
+          "system": "http://snomed.info/sct",
+          "code": "300995000",
+          "display": "Exercise-induced angina"
+        },
+        "codeText": "Exercise-induced angina",
+        "unit": null
+      },
+      "toFhir": {
+        "type": "boolean",
+        "map": {
+          "Y": true,
+          "N": false
+        }
+      },
+      "fromFhir": {
+        "type": "booleanReverse",
+        "map": {
+          "true": "Y",
+          "false": "N"
+        }
+      },
+      "validation": {
+        "allowed": [
+          "Y",
+          "N"
+        ]
+      },
+      "notes": [
+        "A boolean value is used because the source is a yes/no observation. 'N' is stored as valueBoolean false, never by omitting the Observation, so the extractor can distinguish 'no angina' from 'not recorded'.",
+        "A Condition-based representation (SNOMED 194828000 'Angina pectoris') would also be valid but would fragment extraction across resource types."
+      ]
+    },
+    {
+      "id": "oldpeak",
+      "column": "Oldpeak",
+      "order": 10,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "st-deviation",
+        "element": "Observation.valueQuantity",
+        "valueType": "Quantity",
+        "category": "procedure",
+        "code": {
+          "system": "http://loinc.org",
+          "code": "91546-2",
+          "display": "ST deviation (Maximum value during study) by EKG"
+        },
+        "codeText": "Maximum ST segment deviation at peak exercise",
+        "unit": {
+          "system": "http://unitsofmeasure.org",
+          "code": "mV",
+          "display": "mV"
+        }
+      },
+      "toFhir": {
+        "type": "quantity",
+        "scale": 0.1
+      },
+      "fromFhir": {
+        "type": "quantityValue",
+        "scale": 10,
+        "round": 1
+      },
+      "validation": {
+        "min": -3.0,
+        "max": 7.0,
+        "unit": "mm"
+      },
+      "notes": [
+        "Oldpeak is expressed in millimetres of ST depression at peak exercise in the source data. LOINC 91546-2 is quantitative and its example unit is mV, so the value is converted with the standard ECG calibration 10 mm = 1 mV (mm x 0.1).",
+        "Negative values (ST elevation relative to rest) are preserved: the sign is meaningful for the model.",
+        "Alternative without unit conversion: SNOMED 26141007 'ST segment depression' with valueQuantity in mm. That code cannot express negative (elevation) values, which is why the LOINC quantitative code is preferred."
+      ]
+    },
+    {
+      "id": "stSlope",
+      "column": "ST_Slope",
+      "order": 11,
+      "required": true,
+      "fhir": {
+        "resource": "Observation",
+        "resourceIdSuffix": "st-slope",
+        "element": "Observation.valueCodeableConcept",
+        "valueType": "CodeableConcept",
+        "category": "procedure",
+        "code": {
+          "system": "https://vita.example.org/fhir/CodeSystem/vita-observation-codes",
+          "code": "st-slope-peak",
+          "display": "ST segment slope at peak exercise"
+        },
+        "codeText": "ST segment slope at peak exercise",
+        "unit": null
+      },
+      "toFhir": {
+        "type": "codeMap",
+        "map": {
+          "Up": {
+            "system": "https://vita.example.org/fhir/CodeSystem/vita-st-slope",
+            "code": "up",
+            "display": "Upsloping",
+            "text": "Upsloping"
+          },
+          "Flat": {
+            "system": "https://vita.example.org/fhir/CodeSystem/vita-st-slope",
+            "code": "flat",
+            "display": "Flat",
+            "text": "Flat"
+          },
+          "Down": {
+            "system": "https://vita.example.org/fhir/CodeSystem/vita-st-slope",
+            "code": "down",
+            "display": "Downsloping",
+            "text": "Downsloping"
+          }
+        }
+      },
+      "fromFhir": {
+        "type": "codeMapReverse"
+      },
+      "validation": {
+        "allowed": [
+          "Up",
+          "Flat",
+          "Down"
+        ]
+      },
+      "notes": [
+        "Terminology gap: LOINC has per-lead quantitative ST slope codes (e.g. 10098-2 'ST slope in lead II', measured in mV/s) and SNOMED has 251256007 'Sloping ST segment', but neither expresses the dataset's categorical direction at peak exercise. A small VITA code system is therefore used.",
+        "The local code system is versioned and published with the mapping so the converter and extractor share one source of truth; it can be retired if a suitable standard concept is published later."
+      ]
+    }
+  ],
+  "label": {
+    "id": "heartDisease",
+    "column": "HeartDisease",
+    "fhir": {
+      "resource": "Condition",
+      "resourceIdSuffix": "heart-disease",
+      "code": {
+        "system": "http://snomed.info/sct",
+        "code": "56265001",
+        "display": "Heart disease"
+      },
+      "clinicalStatus": "active",
+      "verificationStatus": "confirmed",
+      "category": "problem-list-item"
+    },
+    "toFhir": {
+      "type": "conditionPresence",
+      "presentWhen": 1
+    },
+    "fromFhir": {
+      "type": "conditionPresence",
+      "presentWhen": 1
+    },
+    "validation": {
+      "allowed": [
+        0,
+        1
+      ]
+    },
+    "notes": [
+      "The target label is not one of the 11 features; it is required to train and evaluate the model, so it is mapped too.",
+      "Label 1 is encoded as a Condition with SNOMED 56265001 'Heart disease'; label 0 is encoded by the absence of that Condition in the Bundle. For real clinical data, explicit negation would be needed instead of absence."
+    ]
+  },
+  "terminologyVerification": {
+    "server": "https://tx.fhir.org/r4",
+    "report": "mappings/terminology-verification.json",
+    "script": "scripts/verify_terminology.py"
+  }
+}

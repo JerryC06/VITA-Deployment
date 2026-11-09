@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "vita-st-slope",
+  "url": "https://vita.example.org/fhir/CodeSystem/vita-st-slope",
+  "version": "1.0.0",
+  "name": "VitaSTSlope",
+  "title": "VITA ST Segment Slope at Peak Exercise",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-27",
+  "publisher": "VITA Project Team, CS6440 (Georgia Tech OMS)",
+  "description": "Categorical values for the ST segment slope at peak exercise, matching the Up / Flat / Down values of the Kaggle Heart Failure Prediction Dataset.",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 3,
+  "concept": [
+    {
+      "code": "up",
+      "display": "Upsloping",
+      "definition": "ST segment slopes upward from the J point."
+    },
+    {
+      "code": "flat",
+      "display": "Flat",
+      "definition": "ST segment is horizontal (no significant slope) after the J point."
+    },
+    {
+      "code": "down",
+      "display": "Downsloping",
+      "definition": "ST segment slopes downward from the J point."
+    }
+  ]
+}

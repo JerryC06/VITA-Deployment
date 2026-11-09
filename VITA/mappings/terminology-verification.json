@@ -1,0 +1,593 @@
+{
+  "generatedBy": "scripts/verify_terminology.py",
+  "server": "https://tx.fhir.org/r4",
+  "verifiedAt": "2026-10-27T14:00:31Z",
+  "specVersion": "1.1.0",
+  "summary": {
+    "total": 34,
+    "verified": 34,
+    "failed": 0
+  },
+  "entries": [
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "systemName": "HL7 Terminology",
+      "code": "survey",
+      "expectedDisplay": "Survey",
+      "usedBy": [
+        "ChestPainType (Observation.category)",
+        "ExerciseAngina (Observation.category)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=survey",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=survey",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Survey",
+      "version": "2.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "29857009",
+      "expectedDisplay": "Chest pain",
+      "usedBy": [
+        "ChestPainType (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=29857009&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=29857009",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Chest pain",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "429559004",
+      "expectedDisplay": "Typical angina",
+      "usedBy": [
+        "ChestPainType = TA (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=429559004&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=429559004",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Typical angina",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "371807002",
+      "expectedDisplay": "Atypical angina",
+      "usedBy": [
+        "ChestPainType = ATA (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=371807002&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=371807002",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Atypical angina",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "274668005",
+      "expectedDisplay": "Non-cardiac chest pain",
+      "usedBy": [
+        "ChestPainType = NAP (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=274668005&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=274668005",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Non-cardiac chest pain",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "84387000",
+      "expectedDisplay": "Asymptomatic",
+      "usedBy": [
+        "ChestPainType = ASY (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=84387000&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=84387000",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Asymptomatic",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "systemName": "HL7 Terminology",
+      "code": "vital-signs",
+      "expectedDisplay": "Vital Signs",
+      "usedBy": [
+        "RestingBP (Observation.category)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=vital-signs",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=vital-signs",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Vital Signs",
+      "version": "2.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://loinc.org",
+      "systemName": "LOINC",
+      "code": "8480-6",
+      "expectedDisplay": "Systolic blood pressure",
+      "usedBy": [
+        "RestingBP (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://loinc.org/8480-6/",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Floinc.org&code=8480-6",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Systolic blood pressure",
+      "version": "2.83",
+      "displayMatches": true
+    },
+    {
+      "system": "http://unitsofmeasure.org",
+      "systemName": "UCUM",
+      "code": "mm[Hg]",
+      "expectedDisplay": "mm[Hg]",
+      "usedBy": [
+        "RestingBP (Observation.valueQuantity.unit)"
+      ],
+      "kind": "unit",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Funitsofmeasure.org&code=mm%5BHg%5D",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$validate-code?url=http%3A%2F%2Funitsofmeasure.org&code=mm%5BHg%5D",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($validate-code)",
+      "serverDisplay": "mm[Hg]",
+      "version": "2.2",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "systemName": "HL7 Terminology",
+      "code": "laboratory",
+      "expectedDisplay": "Laboratory",
+      "usedBy": [
+        "Cholesterol (Observation.category)",
+        "FastingBS (Observation.category)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=laboratory",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=laboratory",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Laboratory",
+      "version": "2.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://loinc.org",
+      "systemName": "LOINC",
+      "code": "2093-3",
+      "expectedDisplay": "Cholesterol [Mass/volume] in Serum or Plasma",
+      "usedBy": [
+        "Cholesterol (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://loinc.org/2093-3/",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Floinc.org&code=2093-3",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Cholesterol [Mass/volume] in Serum or Plasma",
+      "version": "2.83",
+      "displayMatches": true
+    },
+    {
+      "system": "http://unitsofmeasure.org",
+      "systemName": "UCUM",
+      "code": "mg/dL",
+      "expectedDisplay": "mg/dL",
+      "usedBy": [
+        "Cholesterol (Observation.valueQuantity.unit)",
+        "FastingBS (Observation.valueQuantity.unit)"
+      ],
+      "kind": "unit",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Funitsofmeasure.org&code=mg%2FdL",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$validate-code?url=http%3A%2F%2Funitsofmeasure.org&code=mg%2FdL",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($validate-code)",
+      "serverDisplay": "mg/dL",
+      "version": "2.2",
+      "displayMatches": true
+    },
+    {
+      "system": "http://loinc.org",
+      "systemName": "LOINC",
+      "code": "1558-6",
+      "expectedDisplay": "Fasting glucose [Mass/volume] in Serum or Plasma",
+      "usedBy": [
+        "FastingBS (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://loinc.org/1558-6/",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Floinc.org&code=1558-6",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Fasting glucose [Mass/volume] in Serum or Plasma",
+      "version": "2.83",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "systemName": "HL7 Terminology",
+      "code": "procedure",
+      "expectedDisplay": "Procedure",
+      "usedBy": [
+        "RestingECG (Observation.category)",
+        "MaxHR (Observation.category)",
+        "Oldpeak (Observation.category)",
+        "ST_Slope (Observation.category)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=procedure",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fobservation-category&code=procedure",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Procedure",
+      "version": "2.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://loinc.org",
+      "systemName": "LOINC",
+      "code": "11524-6",
+      "expectedDisplay": "EKG study",
+      "usedBy": [
+        "RestingECG (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://loinc.org/11524-6/",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Floinc.org&code=11524-6",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "EKG study",
+      "version": "2.83",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "164854000",
+      "expectedDisplay": "ECG normal",
+      "usedBy": [
+        "RestingECG = Normal (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=164854000&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=164854000",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "ECG normal",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "164930006",
+      "expectedDisplay": "ECG: ST interval abnormal",
+      "usedBy": [
+        "RestingECG = ST (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=164930006&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=164930006",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "ECG: ST interval abnormal",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "25488008",
+      "expectedDisplay": "Left ventricular hypertrophy by electrocardiogram",
+      "usedBy": [
+        "RestingECG = LVH (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=25488008&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=25488008",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Left ventricular hypertrophy by electrocardiogram",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "428630002",
+      "expectedDisplay": "Maximum heart rate achieved during course of procedure",
+      "usedBy": [
+        "MaxHR (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=428630002&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=428630002",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Maximum heart rate achieved during course of procedure",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://unitsofmeasure.org",
+      "systemName": "UCUM",
+      "code": "/min",
+      "expectedDisplay": "/min",
+      "usedBy": [
+        "MaxHR (Observation.valueQuantity.unit)"
+      ],
+      "kind": "unit",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Funitsofmeasure.org&code=%2Fmin",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$validate-code?url=http%3A%2F%2Funitsofmeasure.org&code=%2Fmin",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($validate-code)",
+      "serverDisplay": "/min",
+      "version": "2.2",
+      "displayMatches": true
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "300995000",
+      "expectedDisplay": "Exercise-induced angina",
+      "usedBy": [
+        "ExerciseAngina (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=300995000&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=300995000",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Exercise-induced angina",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://loinc.org",
+      "systemName": "LOINC",
+      "code": "91546-2",
+      "expectedDisplay": "ST deviation (Maximum value during study) by EKG",
+      "usedBy": [
+        "Oldpeak (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://loinc.org/91546-2/",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Floinc.org&code=91546-2",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "ST deviation (Maximum value during study) by EKG",
+      "version": "2.83",
+      "displayMatches": true
+    },
+    {
+      "system": "http://unitsofmeasure.org",
+      "systemName": "UCUM",
+      "code": "mV",
+      "expectedDisplay": "mV",
+      "usedBy": [
+        "Oldpeak (Observation.valueQuantity.unit)"
+      ],
+      "kind": "unit",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Funitsofmeasure.org&code=mV",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$validate-code?url=http%3A%2F%2Funitsofmeasure.org&code=mV",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($validate-code)",
+      "serverDisplay": "mV",
+      "version": "2.2",
+      "displayMatches": true
+    },
+    {
+      "system": "https://vita.example.org/fhir/CodeSystem/vita-observation-codes",
+      "systemName": "VITA local",
+      "code": "st-slope-peak",
+      "expectedDisplay": "ST segment slope at peak exercise",
+      "usedBy": [
+        "ST_Slope (Observation.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "",
+      "apiUrl": "",
+      "verified": true,
+      "verifiedVia": "local CodeSystem (published in fhir/terminology/)",
+      "serverDisplay": "ST segment slope at peak exercise",
+      "version": "1.0.0"
+    },
+    {
+      "system": "https://vita.example.org/fhir/CodeSystem/vita-st-slope",
+      "systemName": "VITA local",
+      "code": "up",
+      "expectedDisplay": "Upsloping",
+      "usedBy": [
+        "ST_Slope = Up (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "",
+      "apiUrl": "",
+      "verified": true,
+      "verifiedVia": "local CodeSystem (published in fhir/terminology/)",
+      "serverDisplay": "Upsloping",
+      "version": "1.0.0"
+    },
+    {
+      "system": "https://vita.example.org/fhir/CodeSystem/vita-st-slope",
+      "systemName": "VITA local",
+      "code": "flat",
+      "expectedDisplay": "Flat",
+      "usedBy": [
+        "ST_Slope = Flat (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "",
+      "apiUrl": "",
+      "verified": true,
+      "verifiedVia": "local CodeSystem (published in fhir/terminology/)",
+      "serverDisplay": "Flat",
+      "version": "1.0.0"
+    },
+    {
+      "system": "https://vita.example.org/fhir/CodeSystem/vita-st-slope",
+      "systemName": "VITA local",
+      "code": "down",
+      "expectedDisplay": "Downsloping",
+      "usedBy": [
+        "ST_Slope = Down (value)"
+      ],
+      "kind": "code",
+      "lookupUrl": "",
+      "apiUrl": "",
+      "verified": true,
+      "verifiedVia": "local CodeSystem (published in fhir/terminology/)",
+      "serverDisplay": "Downsloping",
+      "version": "1.0.0"
+    },
+    {
+      "system": "http://snomed.info/sct",
+      "systemName": "SNOMED CT",
+      "code": "56265001",
+      "expectedDisplay": "Heart disease",
+      "usedBy": [
+        "HeartDisease (label, Condition.code)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://ontoserver.csiro.au/shrimp/?concept=56265001&systems=http%3A%2F%2Fsnomed.info%2Fsct",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fsnomed.info%2Fsct&code=56265001",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Heart disease",
+      "version": "http://snomed.info/sct/900000000000207008/version/20250201",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+      "systemName": "HL7 Terminology",
+      "code": "unknown",
+      "expectedDisplay": "Unknown",
+      "usedBy": [
+        "Observation.dataAbsentReason"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fdata-absent-reason&code=unknown",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fdata-absent-reason&code=unknown",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Unknown",
+      "version": "2.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "systemName": "HL7 Terminology",
+      "code": "H",
+      "expectedDisplay": "High",
+      "usedBy": [
+        "Observation.interpretation (FastingBS = 1)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fv3-ObservationInterpretation&code=H",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fv3-ObservationInterpretation&code=H",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "High",
+      "version": "4.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "systemName": "HL7 Terminology",
+      "code": "N",
+      "expectedDisplay": "Normal",
+      "usedBy": [
+        "Observation.interpretation (FastingBS = 0)"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fv3-ObservationInterpretation&code=N",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fv3-ObservationInterpretation&code=N",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Normal",
+      "version": "4.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+      "systemName": "HL7 Terminology",
+      "code": "active",
+      "expectedDisplay": "Active",
+      "usedBy": [
+        "Condition.clinicalStatus"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fcondition-clinical&code=active",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fcondition-clinical&code=active",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Active",
+      "version": "3.0.0",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+      "systemName": "HL7 Terminology",
+      "code": "confirmed",
+      "expectedDisplay": "Confirmed",
+      "usedBy": [
+        "Condition.verificationStatus"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fcondition-ver-status&code=confirmed",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fcondition-ver-status&code=confirmed",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Confirmed",
+      "version": "2.0.1",
+      "displayMatches": true
+    },
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+      "systemName": "HL7 Terminology",
+      "code": "problem-list-item",
+      "expectedDisplay": "Problem List Item",
+      "usedBy": [
+        "Condition.category"
+      ],
+      "kind": "code",
+      "lookupUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fcondition-category&code=problem-list-item",
+      "apiUrl": "https://tx.fhir.org/r4/CodeSystem/$lookup?system=http%3A%2F%2Fterminology.hl7.org%2FCodeSystem%2Fcondition-category&code=problem-list-item",
+      "verified": true,
+      "verifiedVia": "https://tx.fhir.org/r4 ($lookup)",
+      "serverDisplay": "Problem List Item",
+      "version": "2.0.0",
+      "displayMatches": true
+    }
+  ]
+}

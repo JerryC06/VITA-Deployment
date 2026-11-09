@@ -1,0 +1,3 @@
+# Runtime + application dependencies, then test tooling.
+-r requirements.txt
+pytest==9.1.1
