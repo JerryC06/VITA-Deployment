@@ -1,4 +1,4 @@
-"""VITA full-page prediction results. Opened from frontend/web.py."""
+
 
 import base64
 import json
@@ -19,7 +19,6 @@ st.set_page_config(
 
 st.html("""
 <style>
-.stApp { background: #f5f8fc; }
 .block-container { max-width: 1060px; padding-top: 2rem; padding-bottom: 2.5rem; }
 [data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"],
 [data-testid="collapsedControl"] { display: none !important; }
@@ -31,10 +30,9 @@ st.html("""
 .vita-heart { width: 52px; height: 52px; object-fit: contain; }
 .vita-name { font-size: 2.4rem; color: white; font-weight: 800; letter-spacing: .04em; }
 div[data-testid="stVerticalBlockBorderWrapper"] {
-    background: white; border: 1px solid #dfe8f0;
-    border-radius: 16px; box-shadow: 0 5px 18px rgba(23,54,79,.04);
+    border-radius: 16px;
 }
-.vita-note { color: #667a8b; font-size: .86rem; margin-top: 20px; }
+.vita-note { color: inherit; opacity: .75; font-size: .86rem; margin-top: 20px; }
 </style>
 """)
 

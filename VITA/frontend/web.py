@@ -32,7 +32,6 @@ st.set_page_config(
 
 st.html("""
 <style>
-.stApp { background: #f5f8fc; }
 .block-container { max-width: 1060px; padding-top: 2rem; padding-bottom: 2.5rem; }
 [data-testid="stHeader"] {display: none;}
 [data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"],
@@ -48,8 +47,7 @@ st.html("""
 .vita-hero h1 { color: white; font-size: 2.1rem; line-height: 1.2; margin: 0 0 10px; }
 .vita-hero p { color: #dcecf2; font-size: 1rem; line-height: 1.6; margin: 0; }
 div[data-testid="stVerticalBlockBorderWrapper"] {
-    background: #fff; border-radius: 17px; border: 1px solid #dfe8f0;
-    box-shadow: 0 5px 18px rgba(23, 54, 79, .04);
+    border-radius: 17px;
 }
 div.stButton button[kind="primary"], button[data-testid="stBaseButton-primary"] {
     background: #116e83; color: white; border-radius: 10px;
@@ -60,7 +58,8 @@ button[data-testid="stBaseButton-primary"]:disabled {
     background: #dde7ed !important; color: #536777 !important;
     opacity: 1 !important;
 }
-.vita-caption { color: #687c8c; font-size: .84rem; margin: 18px 0; }
+.vita-caption {color: inherit; opacity: 0.75; font-size: .84rem; margin: 18px 0;
+}
 @media(max-width:600px) {
   .vita-hero { padding: 25px; }
   .vita-heart { width: 49px; height: 49px; }
